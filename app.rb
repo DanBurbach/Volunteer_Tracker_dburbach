@@ -24,7 +24,7 @@ patch("/update_project/:id") do
   erb(:project_info)
 end
 
-get("/project/:id/edit") do
+get("/projects/:id/edit") do
   @project = Project.find(params[:id])
   erb(:project_info)
 end
@@ -69,9 +69,8 @@ post('/add_volunteer') do
 end
 
 delete('/delete_volunteer') do
-  @volunteer = Volunteer.find(params[:id])
-  @volunteer.delete()
+  volunteer = Volunteer.find(params[:id])
+  volunteer.delete()
   @volunteers = Volunteer.all()
-  volunteer.save
   erb(:volunteer_info)
 end
