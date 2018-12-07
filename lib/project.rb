@@ -59,8 +59,8 @@ class Project
     self.title().==(another_project.title())
   end
 
-  def delete(id)
-    DB.exec("DELETE FROM projects_tb WHERE id = #{self.id};")
+  def delete()
+    DB.exec("DELETE FROM projects_tb WHERE id = #{self.id()};")
   end
 
   # def volunteers

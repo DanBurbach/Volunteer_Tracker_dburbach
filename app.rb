@@ -12,20 +12,20 @@ get ('/') do
 end
 
 get('/project/:id') do
-  @projects = Project.find(params[:id])
-  @projects = Project.all
+  @project = Project.find(params[:id])
+  @projects = Project.all()
+  erb(:project_info)
+end
+
+patch("/update_project/:id") do
+  title = params.fetch("title")
+  @project = Project.find(params[:id])
+  @project.update({:title => title})
   erb(:project_info)
 end
 
 get("/project/:id/edit") do
   @project = Project.find(params[:id])
-  erb(:project_info)
-end
-
-patch("/project/:id") do
-  title = params.fetch("title")
-  @project = Project.find(params[:id])
-  @project.update({:title => title})
   erb(:project_info)
 end
 

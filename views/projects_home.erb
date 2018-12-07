@@ -14,13 +14,13 @@
     <%if @projects.any?() %>
       <h3>Your Projects</h3><br>
       <ul>
-        <% @projects.each do |events| %>
+        <h4><% @projects.each do |events| %>
           <li>
             <a href="/project/<%= events.id() %>">
               <%= events.title() %>
             </a>
           </li>
-        <% end %>
+        <% end %></h4>
       </ul>
 
       <% else %>
