@@ -33,22 +33,22 @@ class Project
     end
   end
 
-  def volunteers
-    project_volunteers = []
-    volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{@id};")
-    volunteers.each() do |results|
-      name = results.fetch("name")
-      project_id = results.fetch("project_id").to_i
-      id = results.fetch("id").to_i
-      project_volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id})
-    end
-    project_volunteers
-  end
+  # def volunteers
+  #   volunteers = DB.exec("SELECT * FROM volunteers_tb WHERE id = #{project_id};")
+  #   project_volunteers = []
+  #   volunteers.each() do |results|
+  #     name = results.fetch("name")
+  #     project_id = results.fetch("project_id").to_i
+  #     id = results.fetch("id").to_i
+  #     project_volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id})
+  #   end
+  #   project_volunteers
+  # end
 
   def update(attributes)
-    @title = attributes.fetch(:title)
+    @title = attributes.fetch(:title, @title)
     @id = self.id()
-    DB.exec("UPDATE project SET title = '#{@title}' WHERE id = #{@id};")
+    DB.exec("UPDATE projects_tb SET title = '#{@title}' WHERE id = #{@id};")
   end
 
   def save
