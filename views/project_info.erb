@@ -1,0 +1,9 @@
+<h3>Your Projects</h3><br>
+<ul>
+  <% @projects.each do |project| %>
+  <li><a href="/input/<%= project.id %>"><%= project.title %></a></li>
+  <% end %>
+</ul>
+
+
+<a href="/">Home</a>
