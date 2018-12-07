@@ -1,0 +1,50 @@
+<h1>A Simple Volunteer and Project Tracker</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2>Enter in your Project Information</h2>
+    <form action="/add_project" method="post">
+      <div class="form-group">
+        <label for="name">Project Name:</label>
+        <input type="text" name="title" required pattern=".*\S+.*" title="This field is required" placeholder="title">
+      </div>
+      <button class="btn btn-success" name="button">Update Project</button>
+    </form>
+
+    <h3>Your Projects</h3><br>
+    <ul>
+      <% @projects.each do |project| %>
+      <li><a href="/input/<%= project.id %>"><%= project.title %></a></li>
+      <% end %>
+    </ul>
+  </div>
+
+
+
+<div class="col-md-6">
+  <h2>Enter in Volunter Information</h2>
+  <form action="/add_volunteer" method="post">
+    <div class="form-group">
+      <label for="name">Volunteer's Name:</label>
+      <input type="text" name="name" required pattern=".*\S+.*" title="This field is required" placeholder="first">
+    </div>
+    <button class="btn btn-success" type="submit" name="button">Add</button>
+  </form>
+
+  <h3>Your Volunteers</h3><br>
+  <ul>
+    <% @volunteer.each do |volunteer| %>
+    <li><a href="/input/<%= volunteer.id %>"><%= volunteer.name %></a></li>
+    <% end %>
+  </ul>
+
+    <form action="/add_volunteer">
+      <label for="volunteers">Select a Project</lable>
+      <select id='projects' name="projects" type='text'>
+        <% @projects.each() do |project| %>
+          <option value="<%= project.id()%>"> <%= project.title() %> </option>
+        <% end %>
+      </select>
+    <button class="btn btn-success" type="submit" name="button">Add</button>
+  </form>
+</div>

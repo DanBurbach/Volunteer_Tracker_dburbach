@@ -15,7 +15,6 @@ post('/add_project') do
   project = Project.new(params)
   project.save
   @title = project.title
-  @specialty_id = project.specialty_id
   @projects = Project.all
   erb(:projects_home)
 end
@@ -24,7 +23,6 @@ post('/add_volunteer') do
   volunteer = Volunteer.new(params)
   volunteer.save
   @name = volunteer.name
-  @project_id = volunteer.project_id
   @volunteer = Volunteer.all
   erb(:projects_home)
 end
