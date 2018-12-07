@@ -33,17 +33,16 @@ class Project
     end
   end
 
-  # def volunteers
-  #   volunteers = DB.exec("SELECT * FROM volunteers_tb WHERE id = #{project_id};")
-  #   project_volunteers = []
-  #   volunteers.each() do |results|
-  #     name = results.fetch("name")
-  #     project_id = results.fetch("project_id").to_i
-  #     id = results.fetch("id").to_i
-  #     project_volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id})
-  #   end
-  #   project_volunteers
-  # end
+  def self.sort
+    returned_projects = DB.exec("SELECT * FROM projects_tb ORDER BY title;")
+    projects = []
+    returned_projects.each() do |project|
+      title = author.fetch("title")
+      id = author.fetch("id").to_i()
+      projects.push(Author.new({:name => name, :id => id}))
+    end
+    projects
+  end
 
   def update(attributes)
     @title = attributes.fetch(:title, @title)
@@ -63,4 +62,16 @@ class Project
   def delete(id)
     DB.exec("DELETE FROM projects_tb WHERE id = #{self.id};")
   end
+
+  # def volunteers
+  #   volunteers = DB.exec("SELECT * FROM volunteers_tb WHERE id = #{project_id};")
+  #   project_volunteers = []
+  #   volunteers.each() do |results|
+  #     name = results.fetch("name")
+  #     project_id = results.fetch("project_id").to_i
+  #     id = results.fetch("id").to_i
+  #     project_volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id})
+  #   end
+  #   project_volunteers
+  # end
 end

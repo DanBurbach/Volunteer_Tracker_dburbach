@@ -7,7 +7,7 @@ require './lib/volunteer'
 
 get ('/') do
   @projects = Project.all
-  @volunteer = Volunteer.all
+  @volunteers = Volunteer.all
   erb(:projects_home)
 end
 
@@ -15,6 +15,25 @@ get('/project/:id') do
   @projects = Project.find(params[:id])
   @projects = Project.all
   erb(:project_info)
+end
+
+get("/project/:id/edit") do
+  @project = Project.find(params[:id])
+  erb(:project_info)
+end
+
+patch("/project/:id") do
+  title = params.fetch("title")
+  @project = Project.find(params[:id])
+  @project.update({:title => title})
+  erb(:project_info)
+end
+
+delete('/delete_project/:id') do
+  project = Project.find(params[:id])
+  project.delete()
+  @projects = Project.all()
+  erb(:projects_home)
 end
 
 get('/add_project') do
@@ -25,16 +44,9 @@ end
 
 post('/add_project') do
   project = Project.new(params)
-  projects.save
+  project.save
   @title = project.title
   @projects = Project.all
-  erb(:projects_home)
-end
-
-delete('/delete_project/:id') do
-  @projects = Project.find(params[:id])
-  @projects.delete()
-  @projects = Project.all()
   erb(:projects_home)
 end
 
@@ -44,21 +56,22 @@ get('/volunteer/:id') do
 end
 
 get('/add_volunteer') do
-  @name = Volunteer.find(params[:id])
-  @volunteer = Volunteer.all
+  @volunteers = Volunteer.all
   erb(:volunteer_info)
 end
 
 post('/add_volunteer') do
   volunteer = Volunteer.new(params)
   @name = volunteer.name
-  @volunteer = Volunteer.all
+  @volunteers = Volunteer.all
   volunteer.save
   erb(:volunteer_info)
 end
 
-
-post('/delete_volunteer') do
-
+delete('/delete_volunteer') do
+  @volunteer = Volunteer.find(params[:id])
+  @volunteer.delete()
+  @volunteers = Volunteer.all()
+  volunteer.save
   erb(:volunteer_info)
 end
