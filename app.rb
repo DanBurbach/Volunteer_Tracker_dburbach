@@ -2,12 +2,12 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'pry'
 also_reload('./lib/**/*.rb')
-require './lib/project.rb'
-require './lib/volunteer.rb'
+require './lib/project'
+require './lib/volunteer'
 
 get ('/') do
   @projects = Project.all
-  # @volunteer = Volunteer.all
+  @volunteer = Volunteer.all
   erb(:projects_home)
 end
 
@@ -25,7 +25,7 @@ post('/add_volunteer') do
   volunteer.save
   @name = volunteer.name
   @project_id = volunteer.project_id
-  # @volunteer = Volunteer.all
+  @volunteer = Volunteer.all
   erb(:projects_home)
 end
 
