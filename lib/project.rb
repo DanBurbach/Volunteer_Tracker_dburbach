@@ -33,6 +33,24 @@ class Project
     end
   end
 
+  def volunteers
+    project_volunteers = []
+    volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{@id};")
+    volunteers.each() do |results|
+      name = results.fetch("name")
+      project_id = results.fetch("project_id").to_i
+      id = results.fetch("id").to_i
+      project_volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id})
+    end
+    project_volunteers
+  end
+
+  def update(attributes)
+    @title = attributes.fetch(:title)
+    @id = self.id()
+    DB.exec("UPDATE project SET title = '#{@title}' WHERE id = #{@id};")
+  end
+
   def save
     result = DB.exec("INSERT INTO projects_tb(title) VALUES ('#{@title}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
@@ -43,6 +61,6 @@ class Project
   end
 
   def delete(id)
-    DB.exec("DELETE FROM projects_tb WHERE id = #{project.id};")
+    DB.exec("DELETE FROM projects_tb WHERE id = #{self.id};")
   end
 end

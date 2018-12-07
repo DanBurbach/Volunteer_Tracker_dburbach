@@ -11,9 +11,9 @@ get ('/') do
   erb(:projects_home)
 end
 
-get('/details/:id') do
+get('/project/:id') do
   @projects = Project.find(params[:id])
-  @volunteer = Project.find(params[:id])
+  @projects = Project.all
   erb(:project_info)
 end
 
@@ -25,10 +25,22 @@ end
 
 post('/add_project') do
   project = Project.new(params)
+  projects.save
   @title = project.title
   @projects = Project.all
-  project.save
   erb(:projects_home)
+end
+
+delete('/delete_project/:id') do
+  @projects = Project.find(params[:id])
+  @projects.delete()
+  @projects = Project.all()
+  erb(:projects_home)
+end
+
+get('/volunteer/:id') do
+  @volunteers = Project.find(params[:id])
+  erb(:volunteer_info)
 end
 
 get('/add_volunteer') do
@@ -42,5 +54,11 @@ post('/add_volunteer') do
   @name = volunteer.name
   @volunteer = Volunteer.all
   volunteer.save
+  erb(:volunteer_info)
+end
+
+
+post('/delete_volunteer') do
+
   erb(:volunteer_info)
 end

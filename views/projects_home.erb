@@ -8,21 +8,24 @@
         <label for="name">Project Name:</label>
         <input type="text" name="title" required pattern=".*\S+.*" title="This field is required" placeholder="title">
       </div>
-      <button type="submit" name="button">Update Project</button>
+      <button type="submit" name="addproject">Create Project</button>
     </form>
 
     <%if @projects.any?() %>
-    <h3>Your Projects</h3><br>
-    <ul>
-      <% @projects.each do |project| %>
-        <li><a href="/details/<%= project.id() %>"><%= project.title() %></a></li>
-      <% end %>
-    </ul>
+      <h3>Your Projects</h3><br>
+      <ul>
+        <% @projects.each do |events| %>
+          <li>
+            <a href="/project/<%= events.id() %>">
+              <%= events.title() %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
 
-    <% else %>
-      <h3>There are no projects added yet!</h3>
-    <% end %>
-
+      <% else %>
+        <h3>There are no projects added yet!</h3>
+        <% end %>
 
   </div>
   <div class="col-md-6">
