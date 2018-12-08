@@ -76,7 +76,7 @@ ALTER SEQUENCE public.projects_tb_id_seq OWNED BY public.projects_tb.id;
 CREATE TABLE public.volunteers_tb (
     id integer NOT NULL,
     name character varying,
-    project_id integer
+    project_id boolean
 );
 
 
@@ -138,14 +138,14 @@ COPY public.volunteers_tb (id, name, project_id) FROM stdin;
 -- Name: projects_tb_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('public.projects_tb_id_seq', 719, true);
+SELECT pg_catalog.setval('public.projects_tb_id_seq', 1, false);
 
 
 --
 -- Name: volunteers_tb_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('public.volunteers_tb_id_seq', 249, true);
+SELECT pg_catalog.setval('public.volunteers_tb_id_seq', 1, false);
 
 
 --
