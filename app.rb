@@ -33,7 +33,7 @@ delete('/delete_project/:id') do
   project = Project.find(params[:id])
   project.delete()
   @projects = Project.all()
-  erb(:project_home)
+  erb(:projects_home)
 end
 
 get('/add_project') do

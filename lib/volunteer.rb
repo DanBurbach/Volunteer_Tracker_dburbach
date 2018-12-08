@@ -10,10 +10,12 @@ class Volunteer
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
-    @project_id = attributes.fetch(:project_id).to_i
-    @id = attributes.fetch(:id).to_i rescue nil
+    @project_id = attributes.fetch(:project_id, nil)
+    @id = attributes.fetch(:id, nil)
   end
 
+
+# double check in here there is something wrong here
   def self.all
     returned_volunteers = DB.exec("SELECT * FROM volunteers_tb;")
     volunteers = []
@@ -49,7 +51,7 @@ class Volunteer
   def update(attributes)
     @name = attributes.fetch(:name)
     @project_id = attributes.fetch(:project_id).to_i
-    @id = self.id().to_i
+    @id = self.id()
     DB.exec("UPDATE volunteers_tb SET name = '#{@name}' WHERE id = #{@id};")
   end
 
@@ -59,7 +61,7 @@ class Volunteer
   end
 
   def ==(another_volunteer)
-    (self.name().==(another_volunteer.name())).&(self.project_id().==(another_volunteer.project_id()))
+    self.name().==(another_volunteer.name()).&(self.project_id().==(another_volunteer.project_id()))
   end
 
   def delete(id)

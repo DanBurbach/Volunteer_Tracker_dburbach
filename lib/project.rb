@@ -10,7 +10,7 @@ class Project
 
   def initialize(attributes)
     @title = attributes.fetch(:title)
-    @id = attributes.fetch(:id).to_i rescue nil
+    @id = attributes.fetch(:id, nil)
   end
 
   def self.all
