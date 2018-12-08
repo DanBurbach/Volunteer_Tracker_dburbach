@@ -20,7 +20,7 @@ end
 patch("/update_project/:id") do
   title = params.fetch("title")
   @project = Project.find(params[:id])
-  @project.update({:title => title})
+  @project.update({:title => title, :detail => detail})
   erb(:project_info)
 end
 
@@ -33,19 +33,21 @@ delete('/delete_project/:id') do
   project = Project.find(params[:id])
   project.delete()
   @projects = Project.all()
-  erb(:projects_home)
+  erb(:project_home)
 end
 
 get('/add_project') do
   @title = Project.find(params[:id])
+  @detail = Project.find(params[:id])
   @projects = Project.all
   erb(:projects_home)
 end
 
 post('/add_project') do
-  project = Project.new(params)
+  project = Project.new({:title => title, :detail => detail})
   project.save
   @title = project.title
+  @detail = project.detail
   @projects = Project.all
   erb(:projects_home)
 end

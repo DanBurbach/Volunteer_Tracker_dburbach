@@ -7,7 +7,12 @@
       <div class="form-group">
         <label for="name">title</label>
         <input type="text" name="title" required pattern=".*\S+.*" title="This field is required" placeholder="title">
+
+        <label for="name">detail</label>
+        <input type="text" name="detail" required pattern=".*\S+.*" title="This field is required" placeholder="detail">
+
       </div>
+
       <button type="submit" name="addproject">Create Project</button>
     </form>
 
@@ -16,8 +21,8 @@
       <ul>
         <h4><% @projects.each do |events| %>
           <li>
-            <a href="/project/<%= events.id() %>">
-              <%= events.title() %>
+            <h4><a href="/project/<%= events.id() %>">
+              <%= events.title() %> : <%events.detail() %></h4>
             </a>
           </li>
         <% end %></h4>

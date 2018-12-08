@@ -2,12 +2,6 @@
 
 <h3><%= @project.title %></h3>
 
-<form action="/update_project/<%= @project.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="name">Rename your list:</label>
-  <input name="name" type="text">
-  <button type="submit">Edit Project</button>
-</form>
 
 <form action="/delete_project/<%= @project.id() %>" method="post">
   <input name="_method" type="hidden" value="delete">
