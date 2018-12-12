@@ -1,9 +1,3 @@
-require'pg'
-require'pry'
-
-
-DB = PG.connect({:dbname => 'volunteer_tracker'})
-
 class Volunteer
   attr_accessor(:name, :project_id)
   attr_reader(:id)

@@ -1,9 +1,3 @@
-require'pg'
-require'pry'
-
-
-DB = PG.connect({:dbname => 'volunteer_tracker'})
-
 class Project
   attr_accessor(:title)
   attr_reader(:id)
@@ -60,18 +54,18 @@ class Project
   end
 
   def delete()
-    DB.exec("DELETE FROM projects_tb WHERE id = #{self.id()};")
+    DB.exec("DELETE FROM projects_tb WHERE id = #{self.id};")
   end
 
-  # def volunteers
-  #   volunteers = DB.exec("SELECT * FROM volunteers_tb WHERE id = #{project_id};")
-  #   project_volunteers = []
-  #   volunteers.each() do |results|
-  #     name = results.fetch("name")
-  #     project_id = results.fetch("project_id").to_i
-  #     id = results.fetch("id").to_i
-  #     project_volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id})
-  #   end
-  #   project_volunteers
-  # end
+  def volunteers
+    volunteers = DB.exec("SELECT * FROM volunteers_tb WHERE project_id = #{self.id};")
+    project_volunteers = []
+    volunteers.each() do |results|
+      name = results.fetch("name")
+      project_id = results.fetch("project_id").to_i
+      id = results.fetch("id").to_i
+      project_volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => nil}))
+    end
+    project_volunteers
+  end
 end
