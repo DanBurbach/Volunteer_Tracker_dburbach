@@ -2,7 +2,7 @@
 <h2>Ruby: Week 3: Friday Test Project: An interactive program for non-profit program and volunteer management</h2>
 
 <h3>Volunteer Tracker</h3>
-Will track volunteers registered for a specific project. Dec 7th, 2018
+Will track volunteers registered for a specific project.
 By Daniel Burbach
   
 <h3>Description</h3>
