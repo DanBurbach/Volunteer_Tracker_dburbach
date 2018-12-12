@@ -22,7 +22,7 @@ createdb [DATABASE NAME] psql [DATABASE_NAME] < database_backup.sql createdb -T 
 When running integration tests it will reset the projects table and volunteers table losing all data.
 
 <h3>Support and contact details</h3>
-If you have any questions please contact Daniel Burbach via email, dburbach1982@gmail.com
+If you have any questions please contact Daniel Burbach via email: dburbach1982@gmail.com
 
 <h3>Technologies Used</h3>
 Github, Ruby, PostGres, Sinatra,
