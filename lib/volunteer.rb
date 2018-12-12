@@ -22,14 +22,11 @@ class Volunteer
     volunteers
   end
 
-  def self.id
-    returned_volunteers = DB.exec("SELECT * FROM volunteers_tb WHERE project_id = #{project_id};")
-    returned_volunteers.each() do |volunteer|
-      name = volunteer.fetch("name")
-      project_id = volunteer.fetch("project_id").to_i
-      id = volunteer.fetch("id").to_i()
-      return Volunteer.new({:name => name, :project_id => project_id, :id => id})
-    end
+
+# will following work?
+  def self.find_by_project(id)
+    returned_volunteers = DB.exec("SELECT * FROM volunteers_tb WHERE project_id = #{id};")
+    new_volunteer = Volunteer.new({:name => name, :project_id => project_id, :id => id})
   end
 
   def self.find(id)
