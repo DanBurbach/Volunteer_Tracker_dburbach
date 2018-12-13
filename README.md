@@ -14,13 +14,15 @@ This project is our Week 3 Ruby Independent project at Epicodus. It challenges o
 <li>Copy this link to your clipboard (https://github.com/DanBurbach/Volunteer_Tracker_dburbach)</li>
 <li>Clone GitHub URL in terminal</li>
 <li>Open the html file in your Web Browser or open file in Atom</li></ul>
-If PSQL is installed, re-engage database using following commmands:
-- createdb volunteer_tracker
-- psql volunteer_tracker < my_database.sql
-- createdb volunteer_tracker_test
-- psql volunteer_tracker_test < my_database_test.sql
-- then type 'ruby app.rb' in your terminal. Then open your internet browser and type localhost:4567. You should now see the homepage.
 
+<ul>
+If PSQL is installed, re-engage database using following commmands:
+<li>- createdb volunteer_tracker</li>
+<li>- psql volunteer_tracker < my_database.sql</li>
+<li>- createdb volunteer_tracker_test</li>
+<li>- psql volunteer_tracker_test < my_database_test.sql</li>
+<li>- then type 'ruby app.rb' in your terminal. Then open your internet browser and type localhost:4567. You should now see the homepage.</li>
+</ul>
 
 <h3>Known Bugs</h3>
 When running integration tests it will reset the projects table and volunteers table losing all data.
