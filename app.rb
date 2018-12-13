@@ -1,9 +1,10 @@
-require 'sinatra'
-require 'sinatra/reloader'
-require 'pry'
-also_reload('./lib/**/*.rb')
-require './lib/project'
-require './lib/volunteer'
+require("sinatra")
+require("sinatra/reloader")
+also_reload("lib/**/*.rb")
+require("./lib/project")
+require("./lib/volunteer")
+require("pg")
+require("pry")
 
 DB = PG.connect({:dbname => 'volunteer_tracker'})
 
@@ -31,20 +32,21 @@ get('/project/:id') do
   erb(:project_info)
 end
 
-get("/project_edit/:id") do
+get('/project_edit/:id') do
   id = params[:id].to_i
   @project = Project.find(params[:id])
-  erb(:project_info)
+  @projects = Project.all
+  erb(:project_edit)
 end
 
-patch("/update_project/:id") do
+patch('/update_project/:id') do
   title = params.fetch("title")
-  id = params [:id].to_i
+  id = params[:id].to_i
   @project = Project.find(params[:id])
   @project.update({:title => title, :id => nil})
   @projects = Project.all
   @volunteers = Volunteer.all
-  erb(:project_info)
+  erb(:project_edit)
 end
 
 delete('/delete_project/:id') do
@@ -52,7 +54,7 @@ delete('/delete_project/:id') do
   @project.delete
   @projects = Project.all
   @volunteers = Volunteer.all
-  erb(:projects_home)
+  redirect('/')
 end
 
 # volunteer listing data
@@ -60,7 +62,7 @@ end
 
 post('/add_volunteer') do
   name = params.fetch("name")
-  project_id = params.fetch("project_id")
+  project_id = params.fetch("project_id").to_i
   volunteer = Volunteer.new({:name => name, :project_id => project_id, :id => nil})
   volunteer.save
   @projects = Project.all

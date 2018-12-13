@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.4
--- Dumped by pg_dump version 10.4
+-- Dumped from database version 10.5
+-- Dumped by pg_dump version 10.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -41,7 +41,7 @@ CREATE TABLE public.projects_tb (
     id integer NOT NULL,
     title character varying,
     specialty_id integer,
-    detail boolean
+    detail character varying
 );
 
 

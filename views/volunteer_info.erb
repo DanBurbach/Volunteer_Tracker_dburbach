@@ -1,18 +1,6 @@
-<h3>Your Volunteers</h3><br>
-<ul>
-  <% @volunteer.each do |volunteer| %>
-  <li><a href="/input/<%= volunteer.id %>"><%= volunteer.name %></a></li>
-  <% end %>
-</ul>
 
-<h2>Enter in Volunter Information</h2>
-  <form action="/add_volunteer" method="post">
-    <div class="form-group">
-      <label for="name">Volunteer's Name:</label>
-      <input type="text" name="name" required pattern=".*\S+.*" title="This field is required" placeholder="first">
-    </div>
-    <button class="btn btn-success" type="submit" name="button">Add</button>
-  </form>
+<h2>We can edit volunteer info for <%=@volunteer.name %> here</h2>
 
+<a href="/edit_volunteer/<%= @volunteer.id %>">Edit Volunteer Info</a>
 
-<a href="/">Home</a>
+<a href="/">return home</a>
