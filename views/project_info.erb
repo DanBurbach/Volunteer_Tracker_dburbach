@@ -1,7 +1,27 @@
 
 <h2>We can edit project info for</h2>
+
+
 <h3><p><%=@project.title %> </h3> <h2>here!</h2> </p>
+
 
 <h3><a href="/project_edit/<%= @project.id() %>">Edit Project Info</a></h3>
 <br>
-<h3><p><a href="/">return home</a></p></h3>
+
+<%if @volunteers.any?() %>
+  <h3>Your Volunteers</h3><br>
+  <ul>
+    <h4><% @volunteers.each do |people| %>
+      <li>
+        <a href="/edit_volunteer/<%= people.id %>">
+          <%= people.name %>
+        </a>
+      </li>
+    <% end %></h4>
+  </ul>
+
+<% else %>
+  <h3>There are no volunteers yet!</h3>
+<% end %>
+
+<h3><p><a href="/">Return Home</a></p></h3>

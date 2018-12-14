@@ -26,9 +26,10 @@ post('/add_project') do
   erb(:projects_home)
 end
 
-get('/project/:id') do
+get('/projects/:id') do
   @project = Project.find(params[:id])
-  @projects = Project.all()
+  @projects = Project.all
+  @volunteers = Volunteer.all
   erb(:project_info)
 end
 
@@ -73,21 +74,27 @@ end
 # display a volunteer page
 
 get('/edit_volunteer/:id') do
+  id = params[:id].to_i
+  @volunteer = Volunteer.find(id)
+  @projects = Project.all
+  erb(:volunteer_edit)
+end
+
+patch ('/edit_volunteer/:id') do
   name = params.fetch("name")
   project_id = params.fetch("project_id").to_i
   id = params[:id].to_i
   @volunteer = Volunteer.find(id)
   @volunteer.update({:name => name, :project_id => project_id, :id => nil})
   @projects = Project.all
-  @volunteers = Volunteers.all
-  erb(:volunteer_info)
+  @volunteers = Volunteer.all
+  erb(:volunteer_edit)
 end
 
-
-delete('/delete_volunteer') do
+delete('/edit_volunteer/:id') do
   @volunteer = Volunteer.find(params[:id])
   @volunteer.delete
   @projects = Project.all
   @volunteers = Volunteer.all
-  erb(:volunteer_info)
+  erb(:projects_home)
 end

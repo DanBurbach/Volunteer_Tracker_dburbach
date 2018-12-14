@@ -2,17 +2,28 @@
 
 <h3><%= @volunteer.name %></h3>
 
-<form action="/update_volunteer/<%= @volunteer.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="name">Volunteer Name</label>
-  <input name="name" type="text">
-  <button type="submit">Update Volunteer Name</button>
+<p><form action="/edit_volunteer/<%= @volunteer.id %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+      <label for="name">Volunteer Name</label>
+        <input name="name" type="text"></p>
+
+  <p><button type="submit" class="btn btn-info">Update Volunteer</button></p>
+
+<p>Current project assignment for this volunteer is <%= @volunteer.project_id %></p>
+  <label for="project_id">Assign a new project?</label>
+  <select id="project_id" name="project_id" type="text">
+    <% @projects.each() do |project| %>
+      <option value="<%f= project.id %>"> <%= project.title %> </option>
+    <% end %>
+  </select>
+  <button type="submit" name="button" class="btn btn-info">Update Assignment</button>
 </form>
 
-<form action="/delete_volunteer/<%= @volunteer.id() %>" method="post">
-  <input name="_method" type="hidden" value="delete">
+<p><form action="/edit_volunteer/<%= @volunteer.id %>" method="delete">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn btn-success">Delete Volunteer</button>
+</form></p>
 
-  <button type="submit">Delete Volunteer</button>
-</form>
+
 
 <a href="/">Back</a>

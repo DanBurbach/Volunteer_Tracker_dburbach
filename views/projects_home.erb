@@ -10,7 +10,7 @@
         <label for="title">title</label><br>
         <input type="text" name="title" required pattern=".*\S+.*" title="This field is required">
       </div>
-      <button type="submit" name="addproject">Create Project</button>
+      <button type="submit" class="btn btn-info" name="addproject">Create Project</button>
     </form>
     <br>
 
@@ -19,8 +19,8 @@
       <ul>
         <h4><% @projects.each do |events| %>
           <li>
-            <a href="/project/<%= events.id %>">
-              <%= events.title() %>
+            <a href="/projects/<%= events.id %>">
+              <%= events.title %>
             </a>
           </li>
         <% end %></h4>
@@ -40,7 +40,14 @@
         <label for="name">name</label><br>
       <input type="text" name="name">
       </div>
-      <button type="submit" name="addvolunteer">Add Volunteer</button>
+
+      <label for="project_id">Select a Project</label>
+      <select id="project_id" name="project_id" type="text">
+        <% @projects.each do |project| %>
+          <option value="<%= project.id %>"> <%= project.title %> </option>
+        <% end %>
+      </select>
+        <button type="submit" class="btn btn-info"name="addvolunteer">Add Volunteer</button>
     </form>
     <br>
 

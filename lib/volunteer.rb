@@ -8,7 +8,6 @@ class Volunteer
     @id = attributes.fetch(:id, nil)
   end
 
-
 # double check in here there is something wrong here
   def self.all
     returned_volunteers = DB.exec("SELECT * FROM volunteers_tb;")
@@ -20,13 +19,6 @@ class Volunteer
       volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id}))
     end
     volunteers
-  end
-
-
-# will following work?
-  def self.find_by_project(id)
-    returned_volunteers = DB.exec("SELECT * FROM volunteers_tb WHERE project_id = #{id};")
-    new_volunteer = Volunteer.new({:name => name, :project_id => project_id, :id => id})
   end
 
   def self.find(id)
@@ -44,6 +36,7 @@ class Volunteer
     @project_id = attributes.fetch(:project_id).to_i
     @id = self.id()
     DB.exec("UPDATE volunteers_tb SET name = '#{@name}' WHERE id = #{@id};")
+    DB.exec("UPDATE volunteers_tb SET project_id = '#{@project_id}' WHERE id = #{@id};")
   end
 
   def save
