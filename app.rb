@@ -58,7 +58,7 @@ delete('/delete_project/:id') do
   @project.delete
   @projects = Project.all
   @volunteers = Volunteer.all
-  redirect to('/')
+  erb(:projects_home)
 end
 
 # volunteer listing data

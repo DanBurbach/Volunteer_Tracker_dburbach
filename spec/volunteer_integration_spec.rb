@@ -43,7 +43,7 @@ describe 'the project delete path', {:type => :feature} do
     id = test_project.id
     visit "/projects/#{id}/edit"
     click_button('Delete Project')
-    vist '/'
+    visit '/'
     expect(page).not_to have_content("Teaching Kids to Code")
   end
 end
