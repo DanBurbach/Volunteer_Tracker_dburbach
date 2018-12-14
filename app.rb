@@ -33,14 +33,16 @@ get('/projects/:id') do
   erb(:project_info)
 end
 
-get('/project_edit/:id') do
+# edit project
+get('/projects/:id/edit') do
   id = params[:id].to_i
   @project = Project.find(params[:id])
   @projects = Project.all
   erb(:project_edit)
 end
 
-patch('/update_project/:id') do
+# update project
+patch('/edit_projects/:id') do
   title = params.fetch("title")
   id = params[:id].to_i
   @project = Project.find(params[:id])
@@ -50,12 +52,13 @@ patch('/update_project/:id') do
   erb(:project_edit)
 end
 
+# delete project
 delete('/delete_project/:id') do
   @project = Project.find(params[:id])
   @project.delete
   @projects = Project.all
   @volunteers = Volunteer.all
-  redirect('/')
+  redirect to('/')
 end
 
 # volunteer listing data
@@ -72,7 +75,6 @@ post('/add_volunteer') do
 end
 
 # display a volunteer page
-
 get('/edit_volunteer/:id') do
   id = params[:id].to_i
   @volunteer = Volunteer.find(id)
@@ -80,6 +82,7 @@ get('/edit_volunteer/:id') do
   erb(:volunteer_edit)
 end
 
+# update volunteer info
 patch ('/edit_volunteer/:id') do
   name = params.fetch("name")
   project_id = params.fetch("project_id").to_i
@@ -91,7 +94,8 @@ patch ('/edit_volunteer/:id') do
   erb(:volunteer_edit)
 end
 
-delete('/edit_volunteer/:id') do
+# delete a volunteer
+delete('/delete_volunteer/:id') do
   @volunteer = Volunteer.find(params[:id])
   @volunteer.delete
   @projects = Project.all

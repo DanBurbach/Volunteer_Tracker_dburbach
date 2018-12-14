@@ -5,7 +5,7 @@
 <h3><p><%=@project.title %> </h3> <h2>here!</h2> </p>
 
 
-<h3><a href="/project_edit/<%= @project.id() %>">Edit Project Info</a></h3>
+<h3><a href="/projects/<%= @project.id %>/edit">Edit Project</a></h3>
 <br>
 
 <%if @volunteers.any?() %>
@@ -19,9 +19,9 @@
       </li>
     <% end %></h4>
   </ul>
-
+<br>
 <% else %>
   <h3>There are no volunteers yet!</h3>
 <% end %>
-
-<h3><p><a href="/">Return Home</a></p></h3>
+<br>
+<a href="/">Home</a>
