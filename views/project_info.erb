@@ -1,12 +1,10 @@
 
-<h2>We can edit project info for</h2>
+<h3>We can edit project info for</h3>
+<h3><p><strong><%=@project.title %></strong></h3> <h3>here!</h3></p>
 
-
-<h3><p><%=@project.title %> </h3> <h2>here!</h2> </p>
-
-
-<h3><a href="/projects/<%= @project.id %>/edit">Edit Project</a></h3>
-<br>
+<p>
+<h3><button type="submit" name="button" class="btn btn-info"><a href="/projects/<%= @project.id %>/edit">Edit Project</a></button></h3>
+</p>
 
 <%if @volunteers.any?() %>
   <h3>Your Volunteers</h3><br>
