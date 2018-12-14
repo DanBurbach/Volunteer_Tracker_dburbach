@@ -93,12 +93,3 @@ patch ('/edit_volunteer/:id') do
   @volunteers = Volunteer.all
   erb(:volunteer_edit)
 end
-
-# delete a volunteer
-delete('/delete_volunteer/:id') do
-  @volunteer = Volunteer.find(params[:id])
-  @volunteer.delete
-  @projects = Project.all
-  @volunteers = Volunteer.all
-  erb(:projects_home)
-end

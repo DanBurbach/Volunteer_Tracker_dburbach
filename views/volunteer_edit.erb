@@ -13,17 +13,11 @@
   <label for="project_id">Assign a new project?</label>
   <select id="project_id" name="project_id" type="text">
     <% @projects.each() do |project| %>
-      <option value="<%f= project.id %>"> <%= project.title %> </option>
+      <option value="<%= project.id %>"> <%= project.title %> </option>
     <% end %>
   </select>
   <button type="submit" name="button" class="btn btn-info">Update Assignment</button>
 </form>
 
-<p><form action="/delete_volunteer/<%= @volunteer.id %>" method="delete">
-    <input name="_method" type="hidden" value="delete">
-    <button type="submit" class="btn btn-success">Delete Volunteer</button>
-</form></p>
 
-
-
-<a href="/">Home</a>
+<button type="submit" name="button" class="btn btn-info"><a href="/">Home</button></a></p>
